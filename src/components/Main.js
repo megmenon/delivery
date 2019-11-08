@@ -6,8 +6,8 @@ class Main extends Component{
 
     state = {
         input: '',
-        address: '',
         redirect: false,
+        isComplete: false,
         restaurants: []
     }
 
@@ -30,7 +30,10 @@ class Main extends Component{
                 .then(res => res.json())
                 .then(data => {
                     this.setState({
-                        restaurants: data.restaurants
+                        restaurants: data.restaurants,
+                        redirect: true,
+                        isComplete: true,
+                        input: ''
                     })
                 })
         }
@@ -50,13 +53,13 @@ class Main extends Component{
     }
 
     render(){
-        const { restaurants } = this.state;
+        const { isComplete, restaurants } = this.state;
         return(
             <div>
                 Welcome, <br/>
                 Enter address in here: <input name="input" onChange={this.handleChange}/>
                 <button onClick={this.handleSubmit}>Submit</button>
-                {restaurants ? <Restaurant restaurants={restaurants} /> : null}
+                {isComplete ? <Restaurant restaurants={restaurants}/> : null}
                 {this.handleRedirect()}
             </div>
         )

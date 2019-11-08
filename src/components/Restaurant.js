@@ -5,7 +5,7 @@ class Restaurant extends Component {
         console.log(this.props)
         return (
             <div>
-                Hello
+               hello
             </div>
         )
     }
